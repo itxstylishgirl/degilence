@@ -67,21 +67,9 @@ export const SoftwareHouseSlider: React.FC<SoftwareHouseSliderProps> = ({ onOpen
   const currentSlide = slides[currentIndex];
 
   return (
-    <div className="w-full relative overflow-hidden bg-[#0D0614] border-b border-purple-500/20 pt-24 pb-8">
+    <div className="w-full relative overflow-hidden bg-[#0D0614] border-b border-purple-500/20 pt-20 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Breadcrumb Trail */}
-        <div className="flex items-center gap-2 text-xs text-slate-400 mb-6 font-medium">
-          <a href="#hero" className="flex items-center gap-1 hover:text-[#C084FC] transition-colors">
-            <Home className="w-3.5 h-3.5" />
-            <span>Home</span>
-          </a>
-          <BreadcrumbArrow className="w-3 h-3 text-purple-500/60" />
-          <span className="text-purple-300">Software House Studio</span>
-          <BreadcrumbArrow className="w-3 h-3 text-purple-500/60" />
-          <span className="text-[#C084FC] font-semibold">{currentSlide.tag}</span>
-        </div>
-
         {/* Main Banner Slider Frame */}
         <div className="relative rounded-3xl overflow-hidden border border-purple-500/30 shadow-2xl shadow-purple-950/80 bg-[#130A1F] h-[380px] sm:h-[440px] md:h-[480px]">
           
@@ -112,36 +100,38 @@ export const SoftwareHouseSlider: React.FC<SoftwareHouseSliderProps> = ({ onOpen
                 
                 {/* Top Badge */}
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-[#C084FC] text-xs font-bold shadow-lg backdrop-blur-md mb-4">
-                    <Building2 className="w-3.5 h-3.5 text-[#A033FF]" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-900/90 border border-purple-400/60 text-[#E9D5FF] text-xs font-extrabold shadow-lg shadow-purple-950/80 backdrop-blur-md mb-4">
+                    <Building2 className="w-3.5 h-3.5 text-[#C084FC]" />
                     <span>{currentSlide.tag}</span>
                   </div>
                   
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                    {currentSlide.title}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E9D5FF] to-[#C084FC]">
+                      {currentSlide.title}
+                    </span>
                   </h2>
-                  <p className="text-xs sm:text-sm font-semibold text-purple-300 mt-1">
+                  <p className="text-xs sm:text-sm font-semibold text-[#C084FC] mt-1.5">
                     {currentSlide.subtitle}
                   </p>
                 </div>
 
                 {/* Bottom Overlay Info & CTA */}
                 <div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 line-clamp-2 sm:line-clamp-none max-w-lg">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6 line-clamp-2 sm:line-clamp-none max-w-lg font-medium">
                     {currentSlide.description}
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
                     <button
                       onClick={onOpenProjectForm}
-                      className="px-6 py-3 rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#A033FF] to-[#C084FC] hover:brightness-110 text-white font-extrabold text-xs tracking-wider uppercase shadow-xl shadow-purple-600/30 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
+                      className="px-6 py-3 rounded-full bg-gradient-to-r from-[#A033FF] via-[#8B5CF6] to-[#C084FC] hover:brightness-110 text-white font-extrabold text-xs tracking-wider uppercase shadow-xl shadow-purple-600/40 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
                     >
                       <Sparkles className="w-4 h-4 text-white" />
                       <span>Start Your Project</span>
                     </button>
 
-                    <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-purple-400/30 text-xs font-bold text-[#C084FC] flex items-center gap-2">
-                      <Award className="w-4 h-4 text-purple-300" />
+                    <div className="px-4 py-2 rounded-full bg-purple-950/70 backdrop-blur-md border border-purple-400/50 text-xs font-bold text-[#E9D5FF] flex items-center gap-2 shadow-md">
+                      <Award className="w-4 h-4 text-[#C084FC]" />
                       <span>{currentSlide.stat}</span>
                     </div>
                   </div>

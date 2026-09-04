@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { SoftwareHouseSlider } from './components/SoftwareHouseSlider';
 import { Hero } from './components/Hero';
@@ -24,21 +24,39 @@ import { AdminDashboard } from './components/AdminDashboard';
 import { StudentPortalModal } from './components/StudentPortalModal';
 import { BubblesAnimation } from './components/BubblesAnimation';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
+import { BackToTopButton } from './components/BackToTopButton';
 
 import { INITIAL_SERVICES, INITIAL_PORTFOLIO, INITIAL_TESTIMONIALS } from './data/initialData';
 import { ServiceItem, PortfolioProject, Testimonial, AIEstimateResponse } from './types';
 
-// Reusable reveal on scroll wrapper for Framer Motion
-const SectionReveal: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 35 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.12 }}
-    transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-  >
-    {children}
-  </motion.div>
-);
+// Reusable reveal on scroll wrapper with subtle vertical parallax for Framer Motion
+const SectionReveal: React.FC<{ children: React.ReactNode; parallaxAmount?: number }> = ({ 
+  children, 
+  parallaxAmount = 25 
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const yParallax = useTransform(scrollYProgress, [0, 1], [parallaxAmount, -parallaxAmount]);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <motion.div
+        style={{ y: yParallax }}
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
 
 export default function App() {
   const [services, setServices] = useState<ServiceItem[]>(INITIAL_SERVICES);
@@ -113,6 +131,9 @@ export default function App() {
 
       {/* Floating WhatsApp Widget */}
       <WhatsAppWidget />
+
+      {/* Floating Back To Top Button */}
+      <BackToTopButton />
 
       {/* Navbar */}
       <Navbar
