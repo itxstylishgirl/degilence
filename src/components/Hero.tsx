@@ -38,18 +38,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProjectForm, onOpenEstimator }
             </motion.div>
 
             {/* Main Heading */}
-            <motion.h1 
+            <motion.h3 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-[38px] sm:text-[52px] lg:text-[60px] leading-[1.08] font-extrabold mb-6 tracking-tight text-[#F4F8FB]"
+              className="text-[28px] sm:text-[36px] lg:text-[42px] leading-[1.12] font-extrabold mb-6 tracking-tight text-[#F4F8FB]"
             >
               We create{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C084FC] via-[#A033FF] to-[#8B5CF6]">
                 AI-powered marketing systems
               </span>
               , high-converting funnels, and scalable growth strategies.
-            </motion.h1>
+            </motion.h3>
 
             {/* Supporting Paragraph */}
             <motion.p 
